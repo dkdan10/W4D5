@@ -15,16 +15,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
-  config.generators do |g|
-    g.testframework(:rspec,
-      fixtures: false,
-      view_specs: false,
-      helper_specs: false,
-      routing_specs: false,
-      controller_specs: false,
-      request_specs: false)
-  end
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -104,13 +94,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
+  def login_user(user)
+    visit new_session_urlm
+    fill_in("username", with: "#{user.username}")
+    fill_in("password", with: "staten_pete_davidson_island")
+    click_button("Log in")
   end
-end
 
 
 end
